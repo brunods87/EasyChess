@@ -1,0 +1,40 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.board{
+	width: 650px;
+	height: 650px;
+	margin: 0 auto;
+}
+.board .row{
+	height: 12.5%;
+}
+.case{
+	width: 12.5%;
+	height: 100%;
+	border: 1px solid #999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.case.selected{
+	border: 3px solid green;
+}
+.board .row:nth-child(odd) .case:nth-child(odd){
+	background-color: #fff;
+}
+.board .row:nth-child(even) .case:nth-child(odd){
+	background-color: #000;
+}
+.board .row:nth-child(odd) .case:nth-child(even){
+	background-color: #000;
+}
+.board .row:nth-child(even) .case:nth-child(even){
+	background-color: #fff;
+}
