@@ -1,0 +1,940 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bla",
+				"blacks"
+			],
+			[
+				"pl",
+				"playerTurn"
+			],
+			[
+				"get",
+				"getBoardCase"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"sele",
+				"selectedCase"
+			],
+			[
+				"inser",
+				"insertAt"
+			],
+			[
+				"parent",
+				"parentElement"
+			],
+			[
+				"btn",
+				"btn-primary \tBootstrap 4 Class"
+			],
+			[
+				"insert",
+				"insertAfter"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"cl",
+				"class\tAttr"
+			],
+			[
+				"is_n",
+				"is_null"
+			],
+			[
+				"font-",
+				"font-weight\tproperty"
+			],
+			[
+				"margin",
+				"margin-bottom\tproperty"
+			],
+			[
+				"backgrou",
+				"background-color\tproperty"
+			],
+			[
+				"text",
+				"text-align\tproperty"
+			],
+			[
+				"t",
+				"table\tTag"
+			],
+			[
+				"main",
+				"mainColor"
+			],
+			[
+				"exp",
+				"expense"
+			],
+			[
+				"expen",
+				"expense_jobable"
+			],
+			[
+				"retu",
+				"returnStock"
+			],
+			[
+				"ma",
+				"material"
+			],
+			[
+				"find",
+				"findOrFail"
+			],
+			[
+				"mater",
+				"materialItem"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"align-ite",
+				"align-items-center \tBootstrap 4 Class"
+			],
+			[
+				"jus",
+				"justify-content-center \tBootstrap 4 Class"
+			],
+			[
+				"success",
+				"successModal"
+			],
+			[
+				"back",
+				"background-image\tproperty"
+			],
+			[
+				"Invoice",
+				"InvoiceItem"
+			],
+			[
+				"material",
+				"material_id"
+			],
+			[
+				"item",
+				"item_id"
+			],
+			[
+				"invoic",
+				"invoiceItems"
+			],
+			[
+				"import",
+				"important"
+			],
+			[
+				"Job",
+				"JobProfit"
+			],
+			[
+				"pro",
+				"profit_id"
+			],
+			[
+				"expense",
+				"expense_id"
+			],
+			[
+				"val",
+				"value_hour"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"nu",
+				"nullable"
+			],
+			[
+				"job",
+				"job_id"
+			],
+			[
+				"discount",
+				"discount_1"
+			],
+			[
+				"disco",
+				"discount_1"
+			],
+			[
+				"optio",
+				"option"
+			],
+			[
+				"invoice",
+				"invoice_items"
+			],
+			[
+				"text-c",
+				"text-center \tBootstrap 4 Class"
+			],
+			[
+				"number",
+				"number_format"
+			],
+			[
+				"posi",
+				"position-relative \tBootstrap 4.4"
+			],
+			[
+				"invocie",
+				"invoice_id"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"justi",
+				"justify-content-center \tBootstrap 4 Class"
+			],
+			[
+				"just",
+				"justify-content-center \tBootstrap 4 Class"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"d-i",
+				"d-inline-block \tBootstrap 4 Class"
+			],
+			[
+				"d-",
+				"d-inline \tBootstrap 4 Class"
+			],
+			[
+				"user",
+				"user_roles"
+			],
+			[
+				"User",
+				"User_role"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"ml-",
+				"ml-4 \tBootstrap 4 Class"
+			],
+			[
+				"mt",
+				"mt-4 \tBootstrap 4 Class"
+			],
+			[
+				"my",
+				"my-2 \tBootstrap 4 Class"
+			],
+			[
+				"py",
+				"py-5 \tBootstrap 4 Class"
+			],
+			[
+				"bt",
+				"btn-danger \tBootstrap 4 Class"
+			],
+			[
+				"siblin",
+				"previousSibling\t: Node Node"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"pec",
+				"peca_id"
+			],
+			[
+				"table-b",
+				"table-bordered \tBootstrap 4 Class"
+			],
+			[
+				"mr",
+				"mr-3 \tBootstrap 4 Class"
+			],
+			[
+				"rect",
+				"rectificacao_total_prev"
+			],
+			[
+				"fres",
+				"fresagem_total_prev"
+			],
+			[
+				"plan",
+				"planTipo"
+			],
+			[
+				"peca",
+				"pecaDb"
+			],
+			[
+				"table-res",
+				"table-responsive \tBootstrap 4 Class"
+			],
+			[
+				"table",
+				"table-condensed \tBootstrap 3 Class"
+			],
+			[
+				"ratio",
+				"ratio_total"
+			],
+			[
+				"array",
+				"array_filter"
+			],
+			[
+				"gant",
+				"ganttplans"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"tabe",
+				"table-responsive \tBootstrap 3 Class"
+			],
+			[
+				"ta",
+				"table-striped \tBootstrap 3 Class"
+			],
+			[
+				"tab",
+				"table-bordered \tBootstrap 4 Class"
+			],
+			[
+				"cls",
+				"colspan\tAttr"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"btn-p",
+				"btn-primary \tBootstrap 4 Class"
+			],
+			[
+				"pecas",
+				"pecas_molde"
+			],
+			[
+				"w",
+				"w-100 \tBootstrap 4 Class"
+			],
+			[
+				"table-r",
+				"table-responsive \tBootstrap 4 Class"
+			],
+			[
+				"sr",
+				"script\tTag"
+			],
+			[
+				"data",
+				"data_xml"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"re",
+				"required\tAttr"
+			],
+			[
+				"mx",
+				"mx-2 \tBootstrap 4 Class"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"curre",
+				"current_molde"
+			],
+			[
+				"inlin",
+				"inline-block\tdisplay"
+			],
+			[
+				"coor",
+				"color\tproperty"
+			],
+			[
+				"console",
+				"console_log"
+			],
+			[
+				"full",
+				"fullCalendar"
+			],
+			[
+				"each",
+				"forEach"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"mb-",
+				"mb-3 \tBootstrap 4 Class"
+			],
+			[
+				"li",
+				"link\tTag"
+			],
+			[
+				"button",
+				"buttonSubmit"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"mo",
+				"modal \tBootstrap 4 Class"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"che",
+				"checkForm"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"ht",
+				"htmlpic"
+			],
+			[
+				"col-",
+				"col-md-3 \tBootstrap 3 Class"
+			],
+			[
+				"background",
+				"background-image\tproperty"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"min",
+				"min-width\tproperty"
+			],
+			[
+				"col-md",
+				"col-md-2 \tBootstrap 3 Class"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "resources/js/components/BoardWhite.vue",
+			"settings":
+			{
+				"buffer_size": 19495,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/js/app.js",
+			"settings":
+			{
+				"buffer_size": 1087,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/home.blade.php",
+			"settings":
+			{
+				"buffer_size": 89,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 341.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"fin",
+				"PHPCompanion:Find Use"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"find",
+				"PHPCompanion:Find Use"
+			],
+			[
+				"makes",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"use",
+				"UI: Select Color Scheme"
+			],
+			[
+				"the",
+				"UI: Select Theme"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Install Package Control"
+			]
+		],
+		"width": 609.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/routes"
+	],
+	"file_history":
+	[
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/views/home.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/components/Board.vue",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/app.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/sass/app.scss",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/.env",
+		"/C/Users/Bruno/Desktop/script.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/views/layouts/sidebar.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/sass/app.scss",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/css/main.css",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/public/css/app.css",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/routes/web.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/app/Providers/RouteServiceProvider.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/app/Http/Controllers/HomeController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/views/welcome.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/views/layouts/header.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/.env",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/resources/js/app.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyFruit/webpack.mix.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/sass/app.scss",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/InvoiceItemController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Invoice.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/view.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/view.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/MaterialController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/pdf.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/excel.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/InvoiceItem.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/extractPdf.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Material.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/routes/web.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_10_07_210156_add_order_to_invoice_items_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/JobController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/ClientController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/excel.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/InvoiceController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/excel.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_09_17_191309_add_description_to_invoice_items_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/pdf.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Exports/MaterialExport.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/SettingController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/pdf.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Exports/JobExport.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/public/css/excel.css",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/index.blade.php",
+		"/C/Users/Bruno/Downloads/ProductsExport.php",
+		"/C/Users/Bruno/Downloads/ExportSheet.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Exports/InvoiceExport.php",
+		"/C/Users/Bruno/Downloads/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/config/dompdf.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/UnityController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/TypeController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Supplier.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/SupplierController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/CategoryController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/sass/_variables.scss",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/config/app.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/EmployeeController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/node_modules/datatables/media/js/jquery.dataTables.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Job.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/JobExpense.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/JobExpenseController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/modals/addExpensesModal.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/layouts/app.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/modals/errorModal.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/modals/successModal.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/home.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Http/Controllers/JobProfitController.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Employee.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_141406_create_job_profits_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_07_26_170310_add_total_to_job_expenses_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_141427_create_job_expenses_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/employees/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_121812_create_employees_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120642_create_jobs_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_113502_create_materials_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/employees/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Setting.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_121318_create_invoice_items_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_175928_create_settings_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_121041_create_invoices_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120920_create_equipment_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120846_create_clients_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120619_create_suppliers_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120553_create_unities_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120537_create_types_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2020_06_20_120525_create_categories_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/clients/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/types/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/suppliers/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/categories/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/clients/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/jobs/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/js/app.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/modals/createMaterialModal.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/invoices/update.blade.php",
+		"/C/Users/Bruno/Downloads/web.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/node_modules/loader-utils/node_modules/json5/lib/stringify.js",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/modals/createInvoiceModal.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/settings/index.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/employees/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Unity.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Type.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/clients/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Client.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Category.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/types/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/categories/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/categories/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/types/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/suppliers/create.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/suppliers/update.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/config/form.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/resources/views/form/vertical.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/resources/views/form/horizontal.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/config/database.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/welcome.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/.env",
+		"/C/wamp64/bin/apache/apache2.4.41/conf/extra/httpd-vhosts.conf"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 108.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"white"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "resources/js/components/BoardWhite.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19455,
+								19455
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6936.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1087,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								742,
+								742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/views/home.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 89,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								75,
+								75
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "easychess.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mate",
+				"app\\Material.php"
+			],
+			[
+				"suppl",
+				"app\\Supplier.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 398.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

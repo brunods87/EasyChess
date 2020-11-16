@@ -1899,10 +1899,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Board.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BoardWhite.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2280,6 +2280,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var occupied = this.board[this.getBoardCase(dest)];
 
       if (occupied && occupied.color != piece.color) {
+        occupied.position = '';
         return true;
       }
 
@@ -2348,9 +2349,125 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           break;
 
         case 'Bishop':
+          if (dest.y > current.y && dest.x > current.x) {
+            for (var _i5 = current.y + 1, j = current.x + 1; _i5 < dest.y; _i5++, j++) {
+              if (this.board[this.getBoardCase({
+                x: j,
+                y: _i5
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y > current.y && dest.x < current.x) {
+            for (var _i6 = current.y + 1, _j = current.x - 1; _i6 < dest.y; _i6++, _j--) {
+              if (this.board[this.getBoardCase({
+                x: _j,
+                y: _i6
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y < current.y && dest.x > current.x) {
+            for (var _i7 = current.y - 1, _j2 = current.x + 1; _i7 > dest.y; _i7--, _j2++) {
+              if (this.board[this.getBoardCase({
+                x: _j2,
+                y: _i7
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y < current.y && dest.x < current.x) {
+            for (var _i8 = current.y - 1, _j3 = current.x - 1; _i8 > dest.y; _i8--, _j3--) {
+              if (this.board[this.getBoardCase({
+                x: _j3,
+                y: _i8
+              })]) {
+                return false;
+              }
+            }
+          }
+
           break;
 
         case 'Queen':
+          if (dest.x == current.x) {
+            if (dest.y > current.y) {
+              for (var _i9 = current.y + 1; _i9 < dest.y; _i9++) {
+                if (this.board[this.getBoardCase({
+                  x: current.x,
+                  y: _i9
+                })]) {
+                  return false;
+                }
+              }
+            } else {
+              for (var _i10 = current.y - 1; _i10 > dest.y; _i10--) {
+                if (this.board[this.getBoardCase({
+                  x: current.x,
+                  y: _i10
+                })]) {
+                  return false;
+                }
+              }
+            }
+          } else if (dest.y == current.y) {
+            if (dest.x > current.x) {
+              for (var _i11 = current.x + 1; _i11 < dest.x; _i11++) {
+                if (this.board[this.getBoardCase({
+                  x: _i11,
+                  y: current.y
+                })]) {
+                  return false;
+                }
+              }
+            } else {
+              for (var _i12 = current.x - 1; _i12 > dest.x; _i12--) {
+                if (this.board[this.getBoardCase({
+                  x: _i12,
+                  y: current.y
+                })]) {
+                  return false;
+                }
+              }
+            }
+          } else if (dest.y > current.y && dest.x > current.x) {
+            for (var _i13 = current.y + 1, _j4 = current.x + 1; _i13 < dest.y; _i13++, _j4++) {
+              if (this.board[this.getBoardCase({
+                x: _j4,
+                y: _i13
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y > current.y && dest.x < current.x) {
+            for (var _i14 = current.y + 1, _j5 = current.x - 1; _i14 < dest.y; _i14++, _j5--) {
+              if (this.board[this.getBoardCase({
+                x: _j5,
+                y: _i14
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y < current.y && dest.x > current.x) {
+            for (var _i15 = current.y - 1, _j6 = current.x + 1; _i15 > dest.y; _i15--, _j6++) {
+              if (this.board[this.getBoardCase({
+                x: _j6,
+                y: _i15
+              })]) {
+                return false;
+              }
+            }
+          } else if (dest.y < current.y && dest.x < current.x) {
+            for (var _i16 = current.y - 1, _j7 = current.x - 1; _i16 > dest.y; _i16--, _j7--) {
+              if (this.board[this.getBoardCase({
+                x: _j7,
+                y: _i16
+              })]) {
+                return false;
+              }
+            }
+          }
+
           break;
 
         case 'King':
@@ -2408,15 +2525,59 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           break;
 
         case 'Knight':
+          if (Math.abs(dest.x - current.x) == 1 && Math.abs(dest.y - current.y) == 2 || Math.abs(dest.x - current.x) == 2 && Math.abs(dest.y - current.y) == 1) {
+            if (!this.board[this.getBoardCase(dest)]) {
+              return true;
+            }
+
+            if (this.capture(dest, piece)) {
+              return true;
+            }
+          }
+
           break;
 
         case 'Bishop':
+          if (Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y)) {
+            if (this.pathCleared(current, dest, piece)) {
+              if (!this.board[this.getBoardCase(dest)]) {
+                return true;
+              }
+
+              if (this.capture(dest, piece)) {
+                return true;
+              }
+            }
+          }
+
           break;
 
         case 'Queen':
+          if (Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y) || dest.x == current.x || dest.y == current.y) {
+            if (this.pathCleared(current, dest, piece)) {
+              if (!this.board[this.getBoardCase(dest)]) {
+                return true;
+              }
+
+              if (this.capture(dest, piece)) {
+                return true;
+              }
+            }
+          }
+
           break;
 
         case 'King':
+          if (dest.x == current.x && Math.abs(dest.y - current.y) == 1 || dest.y == current.y && Math.abs(dest.x - current.x) == 1 || Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y) && Math.abs(dest.x - current.x) == 1) {
+            if (!this.board[this.getBoardCase(dest)]) {
+              return true;
+            }
+
+            if (this.capture(dest, piece)) {
+              return true;
+            }
+          }
+
           break;
       }
 
@@ -2436,16 +2597,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       if (this.playerTurn == piece.color) {
         if (piece && this.canMove(target, piece)) {
           this.board[target] = piece;
+          piece.position = target;
           this.board[this.selectedCase] = '';
           piece.hasMoved = true;
           this.getGameContext(target, piece);
-          this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
+          /*this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');*/
         }
       }
 
       this.selectedCase = '';
     },
     getGameContext: function getGameContext(target, piece) {}
+  },
+  computed: {
+    whitePieces: function whitePieces() {
+      var array_pieces = Object.values(this.pieces);
+      var whites = array_pieces.filter(function (elem) {
+        return elem.color == 'white' && elem.position != '';
+      });
+      return whites;
+    },
+    blackPieces: function blackPieces() {
+      var array_pieces = Object.values(this.pieces);
+      var blacks = array_pieces.filter(function (elem) {
+        return elem.color == 'black' && elem.position != '';
+      });
+      return blacks;
+    }
   }
 });
 
@@ -38026,10 +38204,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=template&id=7299848b&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Board.vue?vue&type=template&id=7299848b& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50272,7 +50450,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('board', __webpack_require__(/*! ./components/Board.vue */ "./resources/js/components/Board.vue")["default"]);
+Vue.component('board-white', __webpack_require__(/*! ./components/BoardWhite.vue */ "./resources/js/components/BoardWhite.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50330,19 +50508,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Board.vue":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Board.vue ***!
-  \*******************************************/
-/*! no static exports found */
+/***/ "./resources/js/components/BoardWhite.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/BoardWhite.vue ***!
+  \************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Board.vue?vue&type=template&id=7299848b& */ "./resources/js/components/Board.vue?vue&type=template&id=7299848b&");
-/* harmony import */ var _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board.vue?vue&type=script&lang=js& */ "./resources/js/components/Board.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=template&id=2703d00e& */ "./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&");
+/* harmony import */ var _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=script&lang=js& */ "./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50351,9 +50528,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -50363,38 +50540,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Board.vue"
+component.options.__file = "resources/js/components/BoardWhite.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Board.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/Board.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
-/*! no static exports found */
+/***/ "./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/BoardWhite.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Board.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./BoardWhite.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Board.vue?vue&type=template&id=7299848b&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/Board.vue?vue&type=template&id=7299848b& ***!
-  \**************************************************************************/
+/***/ "./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Board.vue?vue&type=template&id=7299848b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=template&id=7299848b&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./BoardWhite.vue?vue&type=template&id=2703d00e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -50418,8 +50595,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Bruno\Documents\Programacao\Applications\EasyChess\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Bruno\Documents\Programacao\Applications\EasyChess\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Bruno\Documents\Programacao\Games\EasyChess\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Bruno\Documents\Programacao\Games\EasyChess\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

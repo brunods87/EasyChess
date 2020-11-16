@@ -105,6 +105,7 @@
             capture(dest,piece){
                 const occupied = this.board[this.getBoardCase(dest)];
                 if (occupied && occupied.color != piece.color){
+                    occupied.position = '';
                     return true;
                 }
                 return false;
@@ -152,12 +153,94 @@
                     break;
             
                     case 'Knight':
-            
                     break;
 
-                    case 'Bishop': break;
-                    case 'Queen': break;
-                    case 'King': break;
+                    case 'Bishop':
+                        if (dest.y > current.y && dest.x > current.x){
+                            for (let i = current.y+1, j = current.x+1;i < dest.y;i++,j++){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y > current.y && dest.x < current.x){
+                            for (let i = current.y+1, j = current.x-1;i < dest.y;i++,j--){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y < current.y && dest.x > current.x){
+                            for (let i = current.y-1, j = current.x+1;i > dest.y;i--,j++){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y < current.y && dest.x < current.x){
+                            for (let i = current.y-1, j = current.x-1;i > dest.y;i--,j--){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }
+                    break;
+
+                    case 'Queen': 
+                        if (dest.x == current.x){
+                            if (dest.y > current.y){
+                                for (let i = current.y+1;i < dest.y;i++){
+                                    if (this.board[this.getBoardCase({x:current.x,y:i})]){
+                                        return false;
+                                    }
+                                }
+                            }else{
+                                for (let i = current.y-1;i > dest.y;i--){
+                                    if (this.board[this.getBoardCase({x:current.x,y:i})]){
+                                        return false;
+                                    }
+                                }
+                            }    
+                        }else if (dest.y == current.y){
+                            if (dest.x > current.x){
+                                for (let i = current.x+1;i < dest.x;i++){
+                                    if (this.board[this.getBoardCase({x:i,y:current.y})]){
+                                        return false;
+                                    }
+                                }
+                            }else{
+                                for (let i = current.x-1;i > dest.x;i--){
+                                    if (this.board[this.getBoardCase({x:i,y:current.y})]){
+                                        return false;
+                                    }
+                                }
+                            }  
+                        }else if (dest.y > current.y && dest.x > current.x){
+                            for (let i = current.y+1, j = current.x+1;i < dest.y;i++,j++){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y > current.y && dest.x < current.x){
+                            for (let i = current.y+1, j = current.x-1;i < dest.y;i++,j--){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y < current.y && dest.x > current.x){
+                            for (let i = current.y-1, j = current.x+1;i > dest.y;i--,j++){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }else if (dest.y < current.y && dest.x < current.x){
+                            for (let i = current.y-1, j = current.x-1;i > dest.y;i--,j--){
+                                if (this.board[this.getBoardCase({x:j,y:i})]){
+                                    return false;
+                                }
+                            }
+                        }
+                    break;
+
+                    case 'King': 
+                    break;
                 }
                 return true;
             },
@@ -206,10 +289,53 @@
 
                     break;
 
-                    case 'Knight': break;
-                    case 'Bishop': break;
-                    case 'Queen': break;
-                    case 'King': break;
+                    case 'Knight': 
+                        if ((Math.abs(dest.x - current.x) == 1 && Math.abs(dest.y - current.y) == 2) || (Math.abs(dest.x - current.x) == 2 && Math.abs(dest.y - current.y) == 1)){
+                            if(!this.board[this.getBoardCase(dest)]){
+                                return true;
+                            }
+                            if (this.capture(dest,piece)){
+                                return true;
+                            }
+                        }
+                    break;
+
+                    case 'Bishop': 
+                        if (Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y)){
+                            if (this.pathCleared(current,dest,piece)){
+                                if(!this.board[this.getBoardCase(dest)]){
+                                    return true;
+                                }
+                                if (this.capture(dest,piece)){
+                                    return true;
+                                }
+                            }
+                        }
+                    break;
+
+                    case 'Queen':
+                        if ((Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y)) || (dest.x == current.x || dest.y == current.y)){
+                            if (this.pathCleared(current,dest,piece)){
+                                if(!this.board[this.getBoardCase(dest)]){
+                                    return true;
+                                }
+                                if (this.capture(dest,piece)){
+                                    return true;
+                                }
+                            }
+                        }
+                    break;
+
+                    case 'King':
+                        if ((dest.x == current.x && Math.abs(dest.y - current.y) == 1) || (dest.y == current.y && Math.abs(dest.x - current.x) == 1) || (Math.abs(dest.x - current.x) == Math.abs(dest.y - current.y) && Math.abs(dest.x - current.x) == 1)){
+                            if(!this.board[this.getBoardCase(dest)]){
+                                return true;
+                            }
+                            if (this.capture(dest,piece)){
+                                return true;
+                            }
+                        }
+                    break;
                 }
                 return false;
             },
@@ -227,10 +353,11 @@
                 if (this.playerTurn == piece.color){
                     if (piece && this.canMove(target,piece)){
                         this.board[target] = piece;
+                        piece.position = target;
                         this.board[this.selectedCase] = '';
                         piece.hasMoved = true;
                         this.getGameContext(target, piece);
-                        this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');
+                        /*this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');*/
                     }
                 }
                 this.selectedCase = '';
@@ -240,6 +367,22 @@
             },
 
             
+        },
+        computed:{
+            whitePieces(){
+                var array_pieces = Object.values(this.pieces);
+                var whites = array_pieces.filter(function(elem){
+                    return elem.color == 'white' && elem.position != '';
+                });
+                return whites;
+            },
+            blackPieces(){
+                var array_pieces = Object.values(this.pieces);
+                var blacks = array_pieces.filter(function(elem){
+                    return elem.color == 'black' && elem.position != '';
+                });
+                return blacks;
+            }
         }
     }
 </script>
