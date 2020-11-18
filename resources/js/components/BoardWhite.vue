@@ -75,6 +75,8 @@
                 selectedCase: '',
                 selectedPiece: {},
                 playerTurn: 'white',
+                whiteInCheck: false,
+                blackInCheck: false
             };
         },
         methods:{
@@ -105,7 +107,6 @@
             capture(dest,piece){
                 const occupied = this.board[this.getBoardCase(dest)];
                 if (occupied && occupied.color != piece.color){
-                    occupied.position = '';
                     return true;
                 }
                 return false;
@@ -114,7 +115,11 @@
 
                 switch(piece.name){
                     case 'Pawn': 
-                        var between = {x: current.x, y: current.y+1};
+                        if (piece.color == 'white'){
+                            var between = {x: current.x, y: current.y+1};
+                        }else{
+                            var between = {x: current.x, y: current.y-1};
+                        }
                         if (this.board[this.getBoardCase(between)]){
                             return false;
                         }
@@ -249,13 +254,13 @@
                     case 'Pawn': 
                         if (dest.x == current.x){
                             if (piece.hasMoved){
-                                if (dest.y - current.y == 1){
+                                if ((dest.y - current.y == 1 && piece.color == 'white') || (current.y - dest.y == 1 && piece.color == 'black')){
                                     if(!this.board[this.getBoardCase(dest)]){
                                         return true;
                                     }
                                 }
                             }else{
-                                var jump = dest.y - current.y;
+                                var jump = Math.abs(dest.y - current.y);
                                 if (jump == 1 || jump == 2){
                                     if (jump == 2 && !this.pathCleared(current,dest,piece)){
                                         return false;
@@ -266,9 +271,17 @@
                                 }
                             }
                         }else{
-                            if (Math.abs(dest.x - current.x) == 1 && dest.y - current.y == 1){
-                                if (this.capture(dest,piece)){
-                                    return true;
+                            if (piece.color == 'white'){
+                                if (Math.abs(dest.x - current.x) == 1 && dest.y - current.y == 1){
+                                    if (this.capture(dest,piece)){
+                                        return true;
+                                    }
+                                }
+                            }else{
+                                if (Math.abs(dest.x - current.x) == 1 && current.y - dest.y == 1){
+                                    if (this.capture(dest,piece)){
+                                        return true;
+                                    }
                                 }
                             }
                         }
@@ -341,7 +354,7 @@
             },
             canMove(target, piece){
                  
-                let current = this.getCoordenates(this.selectedCase);
+                let current = this.getCoordenates(piece.position);
                 let dest = this.getCoordenates(target);
                 if (this.isAvailable(dest, current, piece)){
                     return true;
@@ -352,18 +365,46 @@
             move(piece, target){
                 if (this.playerTurn == piece.color){
                     if (piece && this.canMove(target,piece)){
-                        this.board[target] = piece;
+                        var rollBack = this.board[target];
+                        this.board[piece.position] = '';
                         piece.position = target;
-                        this.board[this.selectedCase] = '';
-                        piece.hasMoved = true;
-                        this.getGameContext(target, piece);
-                        /*this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');*/
+                        if (this.board[target]){
+                            var setBack = this.board[target].position;
+                            this.board[target].position = '';
+                        }
+                        this.board[target] = piece;
+                        if(this.getGameContext(piece)){
+                            piece.hasMoved = true;
+                            this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');    
+                        }else{
+                            piece.position = this.selectedCase;
+                            if (rollBack){
+                                rollBack.position = setBack;
+                            }
+                            this.board[target] = rollBack;
+                            this.board[this.selectedCase] = piece;
+                        }
                     }
                 }
                 this.selectedCase = '';
             },
-            getGameContext(target, piece){
-
+            getGameContext(piece){
+                const king = this.arrayPieces.find(elem => (elem.color == piece.color && elem.name == 'King'));
+                const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
+                var that = this;
+                for(const elem of enemies){
+                    if (that.canMove(king.position,elem)){
+                        return false;
+                    }
+                }
+                const team = (piece.color == 'white' ? this.whitePieces : this.blackPieces);
+                const enemyKing = this.arrayPieces.find(elem => (elem.color != piece.color && elem.name == 'King'));
+                for(const elem of team){
+                    if (that.canMove(enemyKing.position,elem)){
+                        piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
+                    }
+                }
+                return true;
             },
 
             
@@ -382,6 +423,13 @@
                     return elem.color == 'black' && elem.position != '';
                 });
                 return blacks;
+            },
+            arrayPieces(){
+                var array_pieces = Object.values(this.pieces);
+                var currentPieces = array_pieces.filter(function(elem){
+                    return elem.position != '';
+                });
+                return currentPieces;    
             }
         }
     }

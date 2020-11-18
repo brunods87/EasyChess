@@ -476,21 +476,21 @@
 	"buffers":
 	[
 		{
-			"file": "resources/js/components/BoardWhite.vue",
-			"settings":
-			{
-				"buffer_size": 19495,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "resources/js/app.js",
 			"settings":
 			{
 				"buffer_size": 1087,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/js/components/BoardWhite.vue",
+			"settings":
+			{
+				"buffer_size": 22070,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -592,6 +592,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components/BoardWhite.vue",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/views/home.blade.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/components/Board.vue",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/app.js",
@@ -718,12 +719,11 @@
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/resources/views/form/horizontal.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/config/database.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/welcome.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/.env",
-		"/C/wamp64/bin/apache/apache2.4.41/conf/extra/httpd-vhosts.conf"
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/.env"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 41.6
 	},
 	"find_in_files":
 	{
@@ -737,6 +737,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"rollBack",
+			"occupied",
+			"piece.position =",
+			"this",
+			"current",
+			"dest",
+			"previousContent",
 			"white"
 		],
 		"highlight": true,
@@ -755,41 +762,11 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "resources/js/components/BoardWhite.vue",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19495,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19455,
-								19455
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6936.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "resources/js/app.js",
 					"semi_transient": false,
 					"settings":
@@ -813,7 +790,37 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/js/components/BoardWhite.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19891,
+								19891
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7102.4,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -841,7 +848,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

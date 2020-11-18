@@ -1908,6 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2246,7 +2248,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       selectedCase: '',
       selectedPiece: {},
-      playerTurn: 'white'
+      playerTurn: 'white',
+      whiteInCheck: false,
+      blackInCheck: false
     };
   },
   methods: {
@@ -2280,7 +2284,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var occupied = this.board[this.getBoardCase(dest)];
 
       if (occupied && occupied.color != piece.color) {
-        occupied.position = '';
         return true;
       }
 
@@ -2289,10 +2292,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     pathCleared: function pathCleared(current, dest, piece) {
       switch (piece.name) {
         case 'Pawn':
-          var between = {
-            x: current.x,
-            y: current.y + 1
-          };
+          if (piece.color == 'white') {
+            var between = {
+              x: current.x,
+              y: current.y + 1
+            };
+          } else {
+            var between = {
+              x: current.x,
+              y: current.y - 1
+            };
+          }
 
           if (this.board[this.getBoardCase(between)]) {
             return false;
@@ -2481,13 +2491,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         case 'Pawn':
           if (dest.x == current.x) {
             if (piece.hasMoved) {
-              if (dest.y - current.y == 1) {
+              if (dest.y - current.y == 1 && piece.color == 'white' || current.y - dest.y == 1 && piece.color == 'black') {
                 if (!this.board[this.getBoardCase(dest)]) {
                   return true;
                 }
               }
             } else {
-              var jump = dest.y - current.y;
+              var jump = Math.abs(dest.y - current.y);
 
               if (jump == 1 || jump == 2) {
                 if (jump == 2 && !this.pathCleared(current, dest, piece)) {
@@ -2500,9 +2510,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               }
             }
           } else {
-            if (Math.abs(dest.x - current.x) == 1 && dest.y - current.y == 1) {
-              if (this.capture(dest, piece)) {
-                return true;
+            if (piece.color == 'white') {
+              if (Math.abs(dest.x - current.x) == 1 && dest.y - current.y == 1) {
+                if (this.capture(dest, piece)) {
+                  return true;
+                }
+              }
+            } else {
+              if (Math.abs(dest.x - current.x) == 1 && current.y - dest.y == 1) {
+                if (this.capture(dest, piece)) {
+                  return true;
+                }
               }
             }
           }
@@ -2584,7 +2602,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return false;
     },
     canMove: function canMove(target, piece) {
-      var current = this.getCoordenates(this.selectedCase);
+      var current = this.getCoordenates(piece.position);
       var dest = this.getCoordenates(target);
 
       if (this.isAvailable(dest, current, piece)) {
@@ -2596,18 +2614,83 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     move: function move(piece, target) {
       if (this.playerTurn == piece.color) {
         if (piece && this.canMove(target, piece)) {
-          this.board[target] = piece;
+          var rollBack = this.board[target];
+          this.board[piece.position] = '';
           piece.position = target;
-          this.board[this.selectedCase] = '';
-          piece.hasMoved = true;
-          this.getGameContext(target, piece);
-          /*this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');*/
+
+          if (this.board[target]) {
+            var setBack = this.board[target].position;
+            this.board[target].position = '';
+          }
+
+          this.board[target] = piece;
+
+          if (this.getGameContext(piece)) {
+            piece.hasMoved = true;
+            this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
+          } else {
+            piece.position = this.selectedCase;
+
+            if (rollBack) {
+              rollBack.position = setBack;
+            }
+
+            this.board[target] = rollBack;
+            this.board[this.selectedCase] = piece;
+          }
         }
       }
 
       this.selectedCase = '';
     },
-    getGameContext: function getGameContext(target, piece) {}
+    getGameContext: function getGameContext(piece) {
+      var king = this.arrayPieces.find(function (elem) {
+        return elem.color == piece.color && elem.name == 'King';
+      });
+      var enemies = piece.color == 'white' ? this.blackPieces : this.whitePieces;
+      var that = this;
+
+      var _iterator = _createForOfIteratorHelper(enemies),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var elem = _step.value;
+
+          if (that.canMove(king.position, elem)) {
+            return false;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var team = piece.color == 'white' ? this.whitePieces : this.blackPieces;
+      var enemyKing = this.arrayPieces.find(function (elem) {
+        return elem.color != piece.color && elem.name == 'King';
+      });
+
+      var _iterator2 = _createForOfIteratorHelper(team),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _elem = _step2.value;
+
+          if (that.canMove(enemyKing.position, _elem)) {
+            piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      return true;
+    }
   },
   computed: {
     whitePieces: function whitePieces() {
@@ -2623,6 +2706,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return elem.color == 'black' && elem.position != '';
       });
       return blacks;
+    },
+    arrayPieces: function arrayPieces() {
+      var array_pieces = Object.values(this.pieces);
+      var currentPieces = array_pieces.filter(function (elem) {
+        return elem.position != '';
+      });
+      return currentPieces;
     }
   }
 });
