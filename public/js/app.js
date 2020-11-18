@@ -1938,6 +1938,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     for (var _i = 0, _Object$entries = Object.entries(this.pieces); _i < _Object$entries.length; _i++) {
@@ -2131,7 +2143,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           color: 'white',
           image: 'white_king.png',
           position: 'E1',
-          hasMoved: false
+          hasMoved: false,
+          castle: false
         },
         bp1: {
           name: 'Pawn',
@@ -2243,7 +2256,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           color: 'black',
           image: 'black_king.png',
           position: 'E8',
-          hasMoved: false
+          hasMoved: false,
+          castle: false
         }
       },
       selectedCase: '',
@@ -2481,6 +2495,152 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           break;
 
         case 'King':
+          if (piece.color == 'white') {
+            var enemies = this.blackPieces;
+
+            if (dest.x == 6) {
+              var rook = this.pieces.wr2;
+              if (rook.hasMoved) return false;
+
+              for (var _i17 = current.x + 1; _i17 < this.getCoordenates(rook.position).x; _i17++) {
+                if (this.board[this.getBoardCase({
+                  x: _i17,
+                  y: 1
+                })]) {
+                  return false;
+                }
+              }
+
+              var _iterator = _createForOfIteratorHelper(enemies),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var elem = _step.value;
+
+                  if (this.canMove('F1', elem) || this.canMove('G1', elem)) {
+                    return false;
+                  }
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+
+              this.board[rook.position] = '';
+              rook.position = 'F1';
+              rook.hasMoved = true;
+              this.board.F1 = rook;
+            } else if (dest.x == 2) {
+              var rook = this.pieces.wr1;
+              if (rook.hasMoved) return false;
+
+              for (var _i18 = current.x - 1; _i18 > this.getCoordenates(rook.position).x; _i18--) {
+                if (this.board[this.getBoardCase({
+                  x: _i18,
+                  y: 1
+                })]) {
+                  return false;
+                }
+              }
+
+              var _iterator2 = _createForOfIteratorHelper(enemies),
+                  _step2;
+
+              try {
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                  var _elem = _step2.value;
+
+                  if (this.canMove('D1', _elem) || this.canMove('C1', _elem)) {
+                    return false;
+                  }
+                }
+              } catch (err) {
+                _iterator2.e(err);
+              } finally {
+                _iterator2.f();
+              }
+
+              this.board[rook.position] = '';
+              rook.position = 'D1';
+              rook.hasMoved = true;
+              this.board.D1 = rook;
+            }
+          } else {
+            var enemies = this.whitePieces;
+
+            if (dest.x == 6) {
+              var rook = this.pieces.br2;
+              if (rook.hasMoved) return false;
+
+              for (var _i19 = current.x + 1; _i19 < this.getCoordenates(rook.position).x; _i19++) {
+                if (this.board[this.getBoardCase({
+                  x: _i19,
+                  y: 8
+                })]) {
+                  return false;
+                }
+              }
+
+              var _iterator3 = _createForOfIteratorHelper(enemies),
+                  _step3;
+
+              try {
+                for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                  var _elem2 = _step3.value;
+
+                  if (this.canMove('F8', _elem2) || this.canMove('G8', _elem2)) {
+                    return false;
+                  }
+                }
+              } catch (err) {
+                _iterator3.e(err);
+              } finally {
+                _iterator3.f();
+              }
+
+              this.board[rook.position] = '';
+              rook.position = 'F8';
+              rook.hasMoved = true;
+              this.board.F8 = rook;
+            } else if (dest.x == 2) {
+              var rook = this.pieces.br1;
+              if (rook.hasMoved) return false;
+
+              for (var _i20 = current.x - 1; _i20 > this.getCoordenates(rook.position).x; _i20--) {
+                if (this.board[this.getBoardCase({
+                  x: _i20,
+                  y: 8
+                })]) {
+                  return false;
+                }
+              }
+
+              var _iterator4 = _createForOfIteratorHelper(enemies),
+                  _step4;
+
+              try {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                  var _elem3 = _step4.value;
+
+                  if (this.canMove('D8', _elem3) || this.canMove('C8', _elem3)) {
+                    return false;
+                  }
+                }
+              } catch (err) {
+                _iterator4.e(err);
+              } finally {
+                _iterator4.f();
+              }
+
+              this.board[rook.position] = '';
+              rook.position = 'D8';
+              rook.hasMoved = true;
+              this.board.D8 = rook;
+            }
+          }
+
           break;
       }
 
@@ -2596,6 +2756,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             }
           }
 
+          if (piece.color == 'white') {
+            if (!piece.hasMoved && !this.whiteInCheck) {
+              if (Math.abs(dest.x - current.x) == 2 && dest.y == current.y && this.pathCleared(current, dest, piece)) {
+                return true;
+              }
+            }
+          } else {
+            if (!piece.hasMoved && !this.blackInCheck) {
+              if (Math.abs(dest.x - current.x) == 2 && dest.y == current.y && this.pathCleared(current, dest, piece)) {
+                return true;
+              }
+            }
+          }
+
           break;
       }
 
@@ -2648,45 +2822,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return elem.color == piece.color && elem.name == 'King';
       });
       var enemies = piece.color == 'white' ? this.blackPieces : this.whitePieces;
-      var that = this;
 
-      var _iterator = _createForOfIteratorHelper(enemies),
-          _step;
+      var _iterator5 = _createForOfIteratorHelper(enemies),
+          _step5;
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var elem = _step.value;
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var elem = _step5.value;
 
-          if (that.canMove(king.position, elem)) {
+          if (this.canMove(king.position, elem)) {
             return false;
           }
         }
       } catch (err) {
-        _iterator.e(err);
+        _iterator5.e(err);
       } finally {
-        _iterator.f();
+        _iterator5.f();
       }
 
+      piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
       var team = piece.color == 'white' ? this.whitePieces : this.blackPieces;
       var enemyKing = this.arrayPieces.find(function (elem) {
         return elem.color != piece.color && elem.name == 'King';
       });
 
-      var _iterator2 = _createForOfIteratorHelper(team),
-          _step2;
+      var _iterator6 = _createForOfIteratorHelper(team),
+          _step6;
 
       try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var _elem = _step2.value;
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+          var _elem4 = _step6.value;
 
-          if (that.canMove(enemyKing.position, _elem)) {
+          if (this.canMove(enemyKing.position, _elem4)) {
             piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
           }
         }
       } catch (err) {
-        _iterator2.e(err);
+        _iterator6.e(err);
       } finally {
-        _iterator2.f();
+        _iterator6.f();
       }
 
       return true;
@@ -38311,36 +38485,65 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-12 text-center" }, [
+      _c("div", { staticClass: "col-10 text-center d-flex" }, [
         _c(
           "div",
           { staticClass: "board" },
-          _vm._l(_vm.rows, function(row) {
-            return _c(
+          [
+            _c(
               "div",
-              { staticClass: "row" },
-              _vm._l(_vm.columns, function(col) {
-                return _c(
-                  "div",
-                  {
-                    staticClass: "case",
-                    class: { selected: _vm.selectedCase == col + row },
-                    attrs: { id: col + row },
-                    on: { click: _vm.selectCase }
-                  },
-                  [
-                    _vm.board[col + row]
-                      ? _c("img", {
-                          attrs: { src: "img/" + _vm.board[col + row].image }
-                        })
-                      : _vm._e()
-                  ]
-                )
+              {
+                staticClass: "position-absolute h-100",
+                staticStyle: { left: "-50px" }
+              },
+              _vm._l(_vm.rows, function(y) {
+                return _c("div", {
+                  staticClass: "row-count",
+                  domProps: { textContent: _vm._s(y) }
+                })
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.rows, function(row) {
+              return _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.columns, function(col) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "case",
+                      class: { selected: _vm.selectedCase == col + row },
+                      attrs: { id: col + row },
+                      on: { click: _vm.selectCase }
+                    },
+                    [
+                      _vm.board[col + row]
+                        ? _c("img", {
+                            attrs: { src: "img/" + _vm.board[col + row].image }
+                          })
+                        : _vm._e()
+                    ]
+                  )
+                }),
+                0
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row mt-1" },
+              _vm._l(_vm.columns, function(x) {
+                return _c("div", {
+                  staticClass: "column-count",
+                  domProps: { textContent: _vm._s(x) }
+                })
               }),
               0
             )
-          }),
-          0
+          ],
+          2
         )
       ])
     ])
@@ -50602,14 +50805,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!************************************************!*\
   !*** ./resources/js/components/BoardWhite.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=template&id=2703d00e& */ "./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&");
 /* harmony import */ var _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=script&lang=js& */ "./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50639,7 +50843,7 @@ component.options.__file = "resources/js/components/BoardWhite.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/BoardWhite.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

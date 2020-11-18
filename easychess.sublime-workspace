@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"posi",
+				"position-absolute \tBootstrap 4.4"
+			],
+			[
 				"bla",
 				"blacks"
 			],
@@ -190,10 +194,6 @@
 			[
 				"number",
 				"number_format"
-			],
-			[
-				"posi",
-				"position-relative \tBootstrap 4.4"
 			],
 			[
 				"invocie",
@@ -488,9 +488,18 @@
 			"file": "resources/js/components/BoardWhite.vue",
 			"settings":
 			{
-				"buffer_size": 22070,
+				"buffer_size": 27673,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/sass/app.scss",
+			"settings":
+			{
+				"buffer_size": 870,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -587,6 +596,7 @@
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/sass",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/routes"
 	],
@@ -723,7 +733,7 @@
 	],
 	"find":
 	{
-		"height": 41.6
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -737,6 +747,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"true",
+			"that",
 			"rollBack",
 			"occupied",
 			"piece.position =",
@@ -790,7 +802,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -799,15 +811,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22070,
+						"buffer_size": 27673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19891,
-								19891
+								853,
+								853
 							]
 						],
 						"settings":
@@ -817,7 +829,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7102.4,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -825,6 +837,35 @@
 				},
 				{
 					"buffer": 2,
+					"file": "resources/sass/app.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								356,
+								356
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "resources/views/home.blade.php",
 					"semi_transient": false,
 					"settings":
@@ -848,7 +889,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

@@ -11,9 +11,18 @@
 	width: 650px;
 	height: 650px;
 	margin: 0 auto;
+	position: relative;
 }
-.board .row{
+.board .row, .row-count{
 	height: 12.5%;
+}
+.row-count{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.column-count{
+	width: 12.5%;
 }
 .case{
 	width: 12.5%;

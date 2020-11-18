@@ -1,15 +1,27 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 text-center">
+            
+            <div class="col-10 text-center d-flex">
+                
                 <div class="board">
+                    <div class="position-absolute h-100" style="left: -50px;">
+                        <div class="row-count" v-for="y in rows" v-text="y">
+                            
+                        </div>
+                    </div>
                     <div class="row" v-for="row in rows">
                         <div class="case" v-on:click="selectCase" :id="col+row" v-for="col in columns" v-bind:class="{ selected: selectedCase == col+row }">
                             <img :src="'img/'+board[col+row].image" v-if="board[col+row]">
                         </div>
                     </div>
+                    <div class="row mt-1">
+                        <div class="column-count" v-for="x in columns" v-text="x">
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
@@ -54,7 +66,7 @@
                     wb1: {name:'Bishop',color:'white',image:'white_bishop.png', position:'C1', hasMoved:false},
                     wb2: {name:'Bishop',color:'white',image:'white_bishop.png', position:'F1', hasMoved:false},
                     wq: {name:'Queen',color:'white',image:'white_queen.png', position:'D1', hasMoved:false},
-                    wk: {name:'King',color:'white',image:'white_king.png', position:'E1', hasMoved:false},
+                    wk: {name:'King',color:'white',image:'white_king.png', position:'E1', hasMoved:false, castle:false},
                     bp1: {name:'Pawn',color:'black',image:'black_pawn.png', position:'A7', hasMoved:false},
                     bp2: {name:'Pawn',color:'black',image:'black_pawn.png', position:'B7', hasMoved:false},
                     bp3: {name:'Pawn',color:'black',image:'black_pawn.png', position:'C7', hasMoved:false},
@@ -70,7 +82,7 @@
                     bb1: {name:'Bishop',color:'black',image:'black_bishop.png', position:'C8', hasMoved:false},
                     bb2: {name:'Bishop',color:'black',image:'black_bishop.png', position:'F8', hasMoved:false},
                     bq: {name:'Queen',color:'black',image:'black_queen.png', position:'D8', hasMoved:false},
-                    bk: {name:'King',color:'black',image:'black_king.png', position:'E8', hasMoved:false}
+                    bk: {name:'King',color:'black',image:'black_king.png', position:'E8', hasMoved:false, castle:false}
                 },
                 selectedCase: '',
                 selectedPiece: {},
@@ -245,6 +257,81 @@
                     break;
 
                     case 'King': 
+                        if (piece.color == 'white'){
+                            var enemies = this.blackPieces;
+                            if (dest.x == 6){
+                                var rook = this.pieces.wr2;
+                                if (rook.hasMoved) return false;
+                                for(let i = current.x + 1;i < this.getCoordenates(rook.position).x;i++){
+                                    if (this.board[this.getBoardCase({x:i,y:1})]){
+                                        return false;
+                                    }
+                                }
+                                for(const elem of enemies){
+                                    if (this.canMove('F1',elem) || this.canMove('G1',elem)){
+                                        return false;
+                                    }
+                                }
+                                this.board[rook.position] = '';
+                                rook.position = 'F1';
+                                rook.hasMoved = true;
+                                this.board.F1 = rook;
+                            }else if (dest.x == 2) {
+                                var rook = this.pieces.wr1;
+                                if (rook.hasMoved) return false;
+                                for(let i = current.x - 1;i > this.getCoordenates(rook.position).x;i--){
+                                    if (this.board[this.getBoardCase({x:i,y:1})]){
+                                        return false;
+                                    }
+                                }
+                                for(const elem of enemies){
+                                    if (this.canMove('D1',elem) || this.canMove('C1',elem)){
+                                        return false;
+                                    }
+                                }
+                                this.board[rook.position] = '';
+                                rook.position = 'D1';
+                                rook.hasMoved = true;
+                                this.board.D1 = rook;
+                            } 
+                        }else{
+                            var enemies = this.whitePieces;
+                            if (dest.x == 6){
+                                var rook = this.pieces.br2;
+                                if (rook.hasMoved) return false;
+                                for(let i = current.x + 1;i < this.getCoordenates(rook.position).x;i++){
+                                    if (this.board[this.getBoardCase({x:i,y:8})]){
+                                        return false;
+                                    }
+                                }
+                                for(const elem of enemies){
+                                    if (this.canMove('F8',elem) || this.canMove('G8',elem)){
+                                        return false;
+                                    }
+                                }
+                                this.board[rook.position] = '';
+                                rook.position = 'F8';
+                                rook.hasMoved = true;
+                                this.board.F8 = rook;
+                            }else if (dest.x == 2) {
+                                var rook = this.pieces.br1;
+                                if (rook.hasMoved) return false;
+                                for(let i = current.x - 1;i > this.getCoordenates(rook.position).x;i--){
+                                    if (this.board[this.getBoardCase({x:i,y:8})]){
+                                        return false;
+                                    }
+                                }
+                                for(const elem of enemies){
+                                    if (this.canMove('D8',elem) || this.canMove('C8',elem)){
+                                        return false;
+                                    }
+                                }
+                                this.board[rook.position] = '';
+                                rook.position = 'D8';
+                                rook.hasMoved = true;
+                                this.board.D8 = rook;
+                            } 
+                        }
                     break;
                 }
                 return true;
@@ -348,6 +435,19 @@
                                 return true;
                             }
                         }
+                        if (piece.color == 'white'){
+                            if (!piece.hasMoved && !this.whiteInCheck){
+                                if (Math.abs(dest.x - current.x) == 2 && dest.y == current.y && this.pathCleared(current,dest,piece)){
+                                    return true;
+                                }
+                            }
+                        }else{
+                            if (!piece.hasMoved && !this.blackInCheck){
+                                if (Math.abs(dest.x - current.x) == 2 && dest.y == current.y && this.pathCleared(current,dest,piece)){
+                                    return true;
+                                }
+                            }
+                        }
                     break;
                 }
                 return false;
@@ -389,18 +489,21 @@
                 this.selectedCase = '';
             },
             getGameContext(piece){
+
                 const king = this.arrayPieces.find(elem => (elem.color == piece.color && elem.name == 'King'));
                 const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
-                var that = this;
+                
                 for(const elem of enemies){
-                    if (that.canMove(king.position,elem)){
+                    if (this.canMove(king.position,elem)){
                         return false;
                     }
                 }
+                piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
+
                 const team = (piece.color == 'white' ? this.whitePieces : this.blackPieces);
                 const enemyKing = this.arrayPieces.find(elem => (elem.color != piece.color && elem.name == 'King'));
                 for(const elem of team){
-                    if (that.canMove(enemyKing.position,elem)){
+                    if (this.canMove(enemyKing.position,elem)){
                         piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
                     }
                 }
