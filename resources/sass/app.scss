@@ -16,6 +16,14 @@
 .board .row, .row-count{
 	height: 12.5%;
 }
+.board.black, .board.black .case, .board.black .row-count, .board.black .column-count{
+	transform: rotate(180deg);
+}
+.board.black .column-row .column-count{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
 .row-count{
 	display: flex;
 	justify-content: center;

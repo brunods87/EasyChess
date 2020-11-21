@@ -4,7 +4,7 @@
             
             <div class="col-10 text-center d-flex">
                 
-                <div class="board">
+                <div :class="playercolor+' board'">
                     <div class="position-absolute h-100" style="left: -50px;">
                         <div class="row-count" v-for="y in rows" v-text="y">
                             
@@ -12,10 +12,10 @@
                     </div>
                     <div class="row" v-for="row in rows">
                         <div class="case" v-on:click="selectCase" :id="col+row" v-for="col in columns" v-bind:class="{ selected: selectedCase == col+row }">
-                            <img :src="'img/'+board[col+row].image" v-if="board[col+row]">
+                            <img :src="'/img/'+board[col+row].image" v-if="board[col+row]">
                         </div>
                     </div>
-                    <div class="row mt-1">
+                    <div class="row mt-1 column-row">
                         <div class="column-count" v-for="x in columns" v-text="x">
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="row justify-content-center">
                     <div class="col-6 col-md-3" v-for="promo in promotionList">
                         <div class="promo" v-bind:class="{ selected: selectedPiece.name == promo.name }" @click="selectPromo(promo)">
-                            <img :src="'img/'+promo.image">
+                            <img :src="'/img/'+promo.image">
                         </div>
                     </div>
                 </div>
@@ -62,13 +62,10 @@
 
 <script>
     export default {
+        props: ['token', 'playercolor'],
         mounted() {
-            for (const [key, value] of Object.entries(this.pieces)) {
-                let place = value.position;
-                let img = '<img src="img/'+value.image+'">';
-                this.board[place] = value;
-            }
-
+            this.setBoard();
+            setInterval(this.syncDown, 1000);
         },
         data(){
             return {
@@ -124,25 +121,57 @@
                 whiteInCheck: false,
                 blackInCheck: false,
                 promotionList: [],
-                promotedPawn: ''
+                promotedPawn: '',
+                stop: false,
             };
         },
         methods:{
-
+    
+            setBoard(){
+                for (const [key, value] of Object.entries(this.pieces)) {
+                    let place = value.position;
+                    this.board[place] = value;
+                }
+            },
             selectCase(event){
                 if (this.selectedCase == ''){
                     this.selectedCase = event.currentTarget.id;    
                 }else{
-                    if (event.currentTarget.id == this.selectedCase){
-                        this.selectedCase = '';
-                    }else{
+                    if(this.playercolor == this.playerTurn && event.currentTarget.id != this.selectedCase){
                         const piece = this.board[this.selectedCase];
                         if(this.move(piece, event.currentTarget.id)){
                             this.getGameContext(piece);   
-                            this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white'); 
-                        }
-                        this.selectedCase = '';  
+                            this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');
+                            this.syncUp();
+                        }    
                     }
+                    this.selectedCase = '';
+                }
+            },
+            syncUp(){
+                this.stop = true;
+                axios.post('/api/syncronizeUp', {board: this.board, pieces: this.pieces, playerTurn: this.playerTurn, whiteInCheck: this.whiteInCheck, blackInCheck: this.blackInCheck, token: this.token})
+                    .then(response => {
+                        this.stop = false;
+                    }).catch(function (error) {
+                        console.log(error);
+                        alert("Erro ao sincronizar up");
+                    });
+            },
+            syncDown(){
+                if (!this.stop){
+                    axios.post('/api/syncronizeDown', {token: this.token})
+                        .then(response => {
+                            var update = response.data;
+                            this.board = update.board;
+                            this.pieces = update.pieces;
+                            this.playerTurn = update.playerTurn;
+                            this.whiteInCheck = update.whiteInCheck;
+                            this.blackInCheck = update.blackInCheck;
+                        }).catch(function (error) {
+                            /*console.log(error);
+                            alert("Erro ao sincronizar down");*/
+                        });
                 }
             },
             getCoordenates(position){

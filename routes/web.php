@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/api/requestGame', [App\Http\Controllers\GameInstanceController::class, 'requestGame'])->name('requestGame');
+Route::post('/api/syncronizeUp', [App\Http\Controllers\GameInstanceController::class, 'syncUp'])->name('syncUp');
+Route::post('/api/syncronizeDown', [App\Http\Controllers\GameInstanceController::class, 'syncDown'])->name('syncDown');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/{token}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
