@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"isA",
+				"isAvailable"
+			],
+			[
+				"can",
+				"canUncheck"
+			],
+			[
+				"bl",
+				"blackPieces"
+			],
+			[
 				"posi",
 				"position-absolute \tBootstrap 4.4"
 			],
@@ -488,7 +500,7 @@
 			"file": "resources/js/components/BoardWhite.vue",
 			"settings":
 			{
-				"buffer_size": 27673,
+				"buffer_size": 29602,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -733,7 +745,7 @@
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 29.0
 	},
 	"find_in_files":
 	{
@@ -747,6 +759,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getGameContext",
+			"selectedCase",
+			"Move",
+			"move",
+			"white",
 			"true",
 			"that",
 			"rollBack",
@@ -811,15 +828,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 27673,
+						"buffer_size": 29602,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								853,
-								853
+								28654,
+								28654
 							]
 						],
 						"settings":
@@ -829,7 +846,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 11726.4,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -897,7 +914,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 29.0
 	},
 	"input":
 	{
@@ -934,7 +951,7 @@
 	"project": "easychess.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":

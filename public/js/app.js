@@ -2276,7 +2276,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           this.selectedCase = '';
         } else {
           var piece = this.board[this.selectedCase];
-          this.move(piece, event.currentTarget.id);
+
+          if (this.move(piece, event.currentTarget.id)) {
+            this.getGameContext(piece);
+          }
         }
       }
     },
@@ -2780,6 +2783,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var dest = this.getCoordenates(target);
 
       if (this.isAvailable(dest, current, piece)) {
+        var rollBack = this.board[target];
+        this.board[piece.position] = '';
+        var pieceDepart = piece.position;
+        piece.position = target;
+
+        if (rollBack) {
+          var setBack = rollBack.position;
+          rollBack.position = '';
+        }
+
+        this.board[target] = piece;
+        var checkSelf = false;
+        var king = this.arrayPieces.find(function (elem) {
+          return elem.color == piece.color && elem.name == 'King';
+        });
+        var enemies = piece.color == 'white' ? this.blackPieces : this.whitePieces;
+
+        var _iterator5 = _createForOfIteratorHelper(enemies),
+            _step5;
+
+        try {
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var elem = _step5.value;
+
+            if (this.isAvailable(this.getCoordenates(king.position), this.getCoordenates(elem.position), elem)) {
+              checkSelf = true;
+              break;
+            }
+          }
+        } catch (err) {
+          _iterator5.e(err);
+        } finally {
+          _iterator5.f();
+        }
+
+        piece.position = pieceDepart;
+
+        if (rollBack) {
+          rollBack.position = setBack;
+        }
+
+        this.board[target] = rollBack;
+        this.board[pieceDepart] = piece;
+        if (checkSelf) return false;
         return true;
       }
 
@@ -2788,59 +2835,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     move: function move(piece, target) {
       if (this.playerTurn == piece.color) {
         if (piece && this.canMove(target, piece)) {
-          var rollBack = this.board[target];
           this.board[piece.position] = '';
           piece.position = target;
 
           if (this.board[target]) {
-            var setBack = this.board[target].position;
             this.board[target].position = '';
           }
 
           this.board[target] = piece;
-
-          if (this.getGameContext(piece)) {
-            piece.hasMoved = true;
-            this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
-          } else {
-            piece.position = this.selectedCase;
-
-            if (rollBack) {
-              rollBack.position = setBack;
-            }
-
-            this.board[target] = rollBack;
-            this.board[this.selectedCase] = piece;
-          }
+          piece.hasMoved = true;
+          piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
+          this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
+          return true;
         }
       }
 
       this.selectedCase = '';
+      return false;
     },
     getGameContext: function getGameContext(piece) {
-      var king = this.arrayPieces.find(function (elem) {
-        return elem.color == piece.color && elem.name == 'King';
-      });
-      var enemies = piece.color == 'white' ? this.blackPieces : this.whitePieces;
-
-      var _iterator5 = _createForOfIteratorHelper(enemies),
-          _step5;
-
-      try {
-        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-          var elem = _step5.value;
-
-          if (this.canMove(king.position, elem)) {
-            return false;
-          }
-        }
-      } catch (err) {
-        _iterator5.e(err);
-      } finally {
-        _iterator5.f();
-      }
-
-      piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
       var team = piece.color == 'white' ? this.whitePieces : this.blackPieces;
       var enemyKing = this.arrayPieces.find(function (elem) {
         return elem.color != piece.color && elem.name == 'King';
@@ -2851,10 +2864,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
       try {
         for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var _elem4 = _step6.value;
+          var elem = _step6.value;
 
-          if (this.canMove(enemyKing.position, _elem4)) {
+          if (this.isAvailable(this.getCoordenates(enemyKing.position), this.getCoordenates(elem.position), elem)) {
             piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
+            break;
           }
         }
       } catch (err) {
@@ -2863,7 +2877,66 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         _iterator6.f();
       }
 
-      return true;
+      var enemies = piece.color == 'white' ? this.blackPieces : this.whitePieces;
+
+      if (piece.color == 'white' && this.blackInCheck) {
+        var canUncheck = false;
+
+        var _iterator7 = _createForOfIteratorHelper(enemies),
+            _step7;
+
+        try {
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var soldier = _step7.value;
+
+            for (var place in this.board) {
+              if (this.canMove(place, soldier)) {
+                canUncheck = true;
+                break;
+              }
+            }
+
+            if (canUncheck) break;
+          }
+        } catch (err) {
+          _iterator7.e(err);
+        } finally {
+          _iterator7.f();
+        }
+
+        if (!canUncheck) this.checkMate('white');
+      } else if (piece.color == 'black' && this.whiteInCheck) {
+        var canUncheck = false;
+
+        var _iterator8 = _createForOfIteratorHelper(enemies),
+            _step8;
+
+        try {
+          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+            var _soldier = _step8.value;
+
+            for (var _place in this.board) {
+              if (this.canMove(_place, _soldier)) {
+                canUncheck = true;
+                break;
+              }
+            }
+
+            if (canUncheck) break;
+          }
+        } catch (err) {
+          _iterator8.e(err);
+        } finally {
+          _iterator8.f();
+        }
+
+        if (!canUncheck) this.checkMate('black');
+      }
+    },
+    checkMate: function checkMate(player) {
+      setTimeout(function () {
+        alert(player + ' wins!');
+      }, 100);
     }
   },
   computed: {
@@ -50805,15 +50878,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!************************************************!*\
   !*** ./resources/js/components/BoardWhite.vue ***!
   \************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BoardWhite_vue_vue_type_template_id_2703d00e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=template&id=2703d00e& */ "./resources/js/components/BoardWhite.vue?vue&type=template&id=2703d00e&");
 /* harmony import */ var _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardWhite.vue?vue&type=script&lang=js& */ "./resources/js/components/BoardWhite.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _BoardWhite_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50843,7 +50915,7 @@ component.options.__file = "resources/js/components/BoardWhite.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/BoardWhite.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

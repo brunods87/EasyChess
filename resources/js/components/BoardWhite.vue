@@ -101,7 +101,9 @@
                         this.selectedCase = '';
                     }else{
                         const piece = this.board[this.selectedCase];
-                        this.move(piece, event.currentTarget.id);    
+                        if(this.move(piece, event.currentTarget.id)){
+                            this.getGameContext(piece);    
+                        }  
                     }
                 }
             },
@@ -457,6 +459,32 @@
                 let current = this.getCoordenates(piece.position);
                 let dest = this.getCoordenates(target);
                 if (this.isAvailable(dest, current, piece)){
+                    var rollBack = this.board[target];
+                    this.board[piece.position] = '';
+                    var pieceDepart = piece.position; 
+                    piece.position = target;
+                    if (rollBack){
+                        var setBack = rollBack.position;
+                        rollBack.position = '';
+                    }
+                    this.board[target] = piece;
+                    var checkSelf = false;
+                    const king = this.arrayPieces.find(elem => (elem.color == piece.color && elem.name == 'King'));
+                    const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
+                    for(const elem of enemies){
+                        if (this.isAvailable(this.getCoordenates(king.position),this.getCoordenates(elem.position),elem)){
+                            checkSelf = true;
+                            break;
+                        }
+                    }
+                    piece.position = pieceDepart;
+                    if (rollBack){
+                        rollBack.position = setBack;
+                    }
+                    this.board[target] = rollBack;
+                    this.board[pieceDepart] = piece;
+                    if (checkSelf) return false;
+                    
                     return true;
                 }
                     
@@ -465,52 +493,63 @@
             move(piece, target){
                 if (this.playerTurn == piece.color){
                     if (piece && this.canMove(target,piece)){
-                        var rollBack = this.board[target];
                         this.board[piece.position] = '';
                         piece.position = target;
                         if (this.board[target]){
-                            var setBack = this.board[target].position;
                             this.board[target].position = '';
                         }
                         this.board[target] = piece;
-                        if(this.getGameContext(piece)){
-                            piece.hasMoved = true;
-                            this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');    
-                        }else{
-                            piece.position = this.selectedCase;
-                            if (rollBack){
-                                rollBack.position = setBack;
-                            }
-                            this.board[target] = rollBack;
-                            this.board[this.selectedCase] = piece;
-                        }
+                        piece.hasMoved = true;
+                        piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
+                        this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');  
+                        return true;  
                     }
                 }
                 this.selectedCase = '';
+                return false;
             },
             getGameContext(piece){
-
-                const king = this.arrayPieces.find(elem => (elem.color == piece.color && elem.name == 'King'));
-                const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
-                
-                for(const elem of enemies){
-                    if (this.canMove(king.position,elem)){
-                        return false;
-                    }
-                }
-                piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
 
                 const team = (piece.color == 'white' ? this.whitePieces : this.blackPieces);
                 const enemyKing = this.arrayPieces.find(elem => (elem.color != piece.color && elem.name == 'King'));
                 for(const elem of team){
-                    if (this.canMove(enemyKing.position,elem)){
+                    if (this.isAvailable(this.getCoordenates(enemyKing.position), this.getCoordenates(elem.position),elem)){
                         piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
+                        break;
                     }
                 }
-                return true;
+                const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
+                if (piece.color == 'white' && this.blackInCheck){
+                    var canUncheck = false;
+                    for (const soldier of enemies){
+                        for(const place in this.board){
+                            if (this.canMove(place, soldier)){
+                                canUncheck = true;
+                                break;
+                            }
+                        }
+                        if (canUncheck) break;
+                    }
+                    if (!canUncheck) this.checkMate('white');
+                }else if(piece.color == 'black' && this.whiteInCheck){
+                    var canUncheck = false;
+                    for (const soldier of enemies){
+                        for(const place in this.board){
+                            if (this.canMove(place, soldier)){
+                                canUncheck = true;
+                                break;
+                            }
+                        }
+                        if (canUncheck) break;
+                    }
+                    if (!canUncheck) this.checkMate('black');
+                }
             },
-
-            
+            checkMate(player){
+                setTimeout(function(){
+                    alert(player+' wins!');
+                }, 100);
+            }
         },
         computed:{
             whitePieces(){
