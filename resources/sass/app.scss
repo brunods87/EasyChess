@@ -32,7 +32,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.case.selected{
+.case.selected, .promo.selected{
 	border: 3px solid green;
 }
 .board .row:nth-child(odd) .case:nth-child(odd){

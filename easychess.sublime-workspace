@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"player",
+				"playerTurn"
+			],
+			[
+				"sele",
+				"selectedPiece"
+			],
+			[
+				"promo",
+				"promotePawn"
+			],
+			[
+				"selected",
+				"selectedPiece"
+			],
+			[
 				"isA",
 				"isAvailable"
 			],
@@ -34,10 +50,6 @@
 			[
 				"col",
 				"columns"
-			],
-			[
-				"sele",
-				"selectedCase"
 			],
 			[
 				"inser",
@@ -500,7 +512,7 @@
 			"file": "resources/js/components/BoardWhite.vue",
 			"settings":
 			{
-				"buffer_size": 29602,
+				"buffer_size": 32088,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -509,7 +521,7 @@
 			"file": "resources/sass/app.scss",
 			"settings":
 			{
-				"buffer_size": 870,
+				"buffer_size": 887,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -759,6 +771,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Rook",
+			"promotedPawn",
+			"choosePromotion",
+			"selectedPiece",
+			"image",
+			"Push",
+			"push",
+			"Push",
+			"promotePawn",
+			"white",
 			"getGameContext",
 			"selectedCase",
 			"Move",
@@ -828,15 +850,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 29602,
+						"buffer_size": 32088,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								28654,
-								28654
+								8130,
+								8130
 							]
 						],
 						"settings":
@@ -846,7 +868,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 11726.4,
+						"translation.y": 3268.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -858,15 +880,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 870,
+						"buffer_size": 887,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								356,
-								356
+								577,
+								577
 							]
 						],
 						"settings":
@@ -875,7 +897,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 306.4,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

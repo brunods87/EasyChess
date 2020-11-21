@@ -23,7 +23,41 @@
             </div>
             
         </div>
+        <!--Modal: modalPromotion-->
+        <div class="modal fade" id="modalPromotion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-notify modal-info" role="document">
+            <!--Content-->
+            <div class="modal-content text-center">
+              <!--Header-->
+              <div class="modal-header d-flex justify-content-center">
+                <p class="heading">Promote Pawn</p>
+              </div>
+
+              <!--Body-->
+              <div class="modal-body text-center">
+
+                <div class="row justify-content-center">
+                    <div class="col-6 col-md-3" v-for="promo in promotionList">
+                        <div class="promo" v-bind:class="{ selected: selectedPiece.name == promo.name }" @click="selectPromo(promo)">
+                            <img :src="'img/'+promo.image">
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer flex-center">
+                <button @click="choosePromotion" data-dismiss="modal" class="btn btn-info">Promote</button>
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+        <!--Modal: modalPromotion-->
     </div>
+    
 </template>
 
 <script>
@@ -85,10 +119,12 @@
                     bk: {name:'King',color:'black',image:'black_king.png', position:'E8', hasMoved:false, castle:false}
                 },
                 selectedCase: '',
-                selectedPiece: {},
+                selectedPiece: '',
                 playerTurn: 'white',
                 whiteInCheck: false,
-                blackInCheck: false
+                blackInCheck: false,
+                promotionList: [],
+                promotedPawn: ''
             };
         },
         methods:{
@@ -102,8 +138,10 @@
                     }else{
                         const piece = this.board[this.selectedCase];
                         if(this.move(piece, event.currentTarget.id)){
-                            this.getGameContext(piece);    
-                        }  
+                            this.getGameContext(piece);   
+                            this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white'); 
+                        }
+                        this.selectedCase = '';  
                     }
                 }
             },
@@ -500,12 +538,10 @@
                         }
                         this.board[target] = piece;
                         piece.hasMoved = true;
-                        piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
-                        this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');  
+                        piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;  
                         return true;  
                     }
                 }
-                this.selectedCase = '';
                 return false;
             },
             getGameContext(piece){
@@ -544,6 +580,30 @@
                     }
                     if (!canUncheck) this.checkMate('black');
                 }
+
+                if (piece.name == 'Pawn'){
+                    if ((piece.color == 'white' && this.getCoordenates(piece.position).y == 8) || (piece.color == 'black' && this.getCoordenates(piece.position).y == 1)){
+                        this.promotePawn(piece);
+                    }
+                }
+            },
+            promotePawn(piece){
+
+                if (piece.color == 'white'){
+                    var list = [this.pieces.wq, this.pieces.wr1, this.pieces.wk1, this.pieces.wb1];
+                }else{
+                    var list = [this.pieces.bq, this.pieces.br1, this.pieces.bk1, this.pieces.bb1];
+                }
+                this.promotionList = list;
+                this.promotedPawn = piece;
+                $('#modalPromotion').modal('show');
+            },
+            selectPromo(promo){
+                this.selectedPiece = promo;
+            },
+            choosePromotion(){
+                this.promotedPawn.name = this.selectedPiece.name; 
+                this.promotedPawn.image = this.selectedPiece.image;
             },
             checkMate(player){
                 setTimeout(function(){

@@ -10934,7 +10934,8 @@ a.text-dark:focus {
   align-items: center;
 }
 
-.case.selected {
+.case.selected,
+.promo.selected {
   border: 3px solid green;
 }
 

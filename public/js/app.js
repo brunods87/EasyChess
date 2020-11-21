@@ -1950,6 +1950,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     for (var _i = 0, _Object$entries = Object.entries(this.pieces); _i < _Object$entries.length; _i++) {
@@ -2261,10 +2295,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       },
       selectedCase: '',
-      selectedPiece: {},
+      selectedPiece: '',
       playerTurn: 'white',
       whiteInCheck: false,
-      blackInCheck: false
+      blackInCheck: false,
+      promotionList: [],
+      promotedPawn: ''
     };
   },
   methods: {
@@ -2279,7 +2315,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           if (this.move(piece, event.currentTarget.id)) {
             this.getGameContext(piece);
+            this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
           }
+
+          this.selectedCase = '';
         }
       }
     },
@@ -2845,12 +2884,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           this.board[target] = piece;
           piece.hasMoved = true;
           piece.color == 'white' ? this.whiteInCheck = false : this.blackInCheck = false;
-          this.playerTurn = this.playerTurn == 'white' ? 'black' : 'white';
           return true;
         }
       }
 
-      this.selectedCase = '';
       return false;
     },
     getGameContext: function getGameContext(piece) {
@@ -2932,6 +2969,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         if (!canUncheck) this.checkMate('black');
       }
+
+      if (piece.name == 'Pawn') {
+        if (piece.color == 'white' && this.getCoordenates(piece.position).y == 8 || piece.color == 'black' && this.getCoordenates(piece.position).y == 1) {
+          this.promotePawn(piece);
+        }
+      }
+    },
+    promotePawn: function promotePawn(piece) {
+      if (piece.color == 'white') {
+        var list = [this.pieces.wq, this.pieces.wr1, this.pieces.wk1, this.pieces.wb1];
+      } else {
+        var list = [this.pieces.bq, this.pieces.br1, this.pieces.bk1, this.pieces.bb1];
+      }
+
+      this.promotionList = list;
+      this.promotedPawn = piece;
+      $('#modalPromotion').modal('show');
+    },
+    selectPromo: function selectPromo(promo) {
+      this.selectedPiece = promo;
+    },
+    choosePromotion: function choosePromotion() {
+      this.promotedPawn.name = this.selectedPiece.name;
+      this.promotedPawn.image = this.selectedPiece.image;
     },
     checkMate: function checkMate(player) {
       setTimeout(function () {
@@ -38619,10 +38680,88 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modalPromotion",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-notify modal-info",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content text-center" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body text-center" }, [
+                _c(
+                  "div",
+                  { staticClass: "row justify-content-center" },
+                  _vm._l(_vm.promotionList, function(promo) {
+                    return _c("div", { staticClass: "col-6 col-md-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "promo",
+                          class: {
+                            selected: _vm.selectedPiece.name == promo.name
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.selectPromo(promo)
+                            }
+                          }
+                        },
+                        [_c("img", { attrs: { src: "img/" + promo.image } })]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer flex-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: { "data-dismiss": "modal" },
+                    on: { click: _vm.choosePromotion }
+                  },
+                  [_vm._v("Promote")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "modal-header d-flex justify-content-center" },
+      [_c("p", { staticClass: "heading" }, [_vm._v("Promote Pawn")])]
+    )
+  }
+]
 render._withStripped = true
 
 
