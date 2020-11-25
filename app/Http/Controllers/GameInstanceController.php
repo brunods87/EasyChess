@@ -15,7 +15,8 @@ class GameInstanceController extends Controller
         $playerTurn = $data['playerTurn'];
         $whiteInCheck = $data['whiteInCheck'];
         $blackInCheck = $data['blackInCheck'];
-        $token = $data['token'];
+        $checkMate = $data['checkMate'];
+        $token = $data['gametoken'];
         $gameInstance = GameInstance::where('instanceToken', $token)->first();
         if ($gameInstance){
         	$gameInstance->board = $jsonBoard;
@@ -23,6 +24,7 @@ class GameInstanceController extends Controller
         	$gameInstance->player_turn = $playerTurn;
         	$gameInstance->white_in_check = $whiteInCheck;
         	$gameInstance->black_in_check = $blackInCheck;
+        	$gameInstance->checkMate = $checkMate;
         	$gameInstance->save();
         	return true;
         }
@@ -32,7 +34,7 @@ class GameInstanceController extends Controller
     public function syncDown(Request $request)
     {
     	$data = $request->post();
-    	$token = $data['token'];
+    	$token = $data['gametoken'];
         $gameInstance = GameInstance::where('instanceToken', $token)->first();
         if ($gameInstance){
         	$board = json_decode($gameInstance->board);
@@ -48,7 +50,7 @@ class GameInstanceController extends Controller
     public function requestGame(Request $request)
     {
         $data = $request->post();
-        $token = $data['token'];
+        $token = $data['gametoken'];
         $gameInstance = GameInstance::where('instanceToken', $token)->first();
         if ($gameInstance && !is_null($gameInstance->black_player)){
         	return true;

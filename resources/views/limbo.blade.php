@@ -14,7 +14,7 @@
 			$.ajax({
 				type: 'POST',
 				url: '{{ route('requestGame') }}',
-				data: {token: '{{$token}}' },
+				data: {gametoken: '{{$token}}' },
 			}).done(function(response){
 				var message = response;
 				if (message){

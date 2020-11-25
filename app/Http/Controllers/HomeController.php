@@ -29,6 +29,9 @@ class HomeController extends Controller
         if (!is_null($token)){
             $gameInstance = GameInstance::where('instanceToken', $token)->first();
             if ($gameInstance){
+                if ($gameInstance->checkMate){
+                    $gameInstance->setBoard();
+                }
                 if ($user->id == $gameInstance->white_player){
                     $playerColor = 'white';
                 }else if($user->id == $gameInstance->black_player){

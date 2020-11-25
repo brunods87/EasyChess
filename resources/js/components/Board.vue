@@ -62,10 +62,15 @@
 
 <script>
     export default {
-        props: ['token', 'playercolor'],
+        props: ['gametoken', 'playercolor'],
         mounted() {
-            this.setBoard();
-            setInterval(this.syncDown, 1000);
+            this.syncDown();
+            var that = this;
+            this.interval = setInterval(function(){
+                if (that.playercolor != that.playerTurn){
+                    that.syncDown();
+                }
+            }, 1000);
         },
         data(){
             return {
@@ -123,14 +128,16 @@
                 promotionList: [],
                 promotedPawn: '',
                 stop: false,
+                gameCheckMate: false,
+                interval: null
             };
         },
         methods:{
     
             setBoard(){
-                for (const [key, value] of Object.entries(this.pieces)) {
-                    let place = value.position;
-                    this.board[place] = value;
+                for (const value in this.pieces) {
+                    let place = this.pieces[value].position;
+                    this.board[place] = this.pieces[value];
                 }
             },
             selectCase(event){
@@ -138,9 +145,14 @@
                     this.selectedCase = event.currentTarget.id;    
                 }else{
                     if(this.playercolor == this.playerTurn && event.currentTarget.id != this.selectedCase){
-                        const piece = this.board[this.selectedCase];
-                        if(this.move(piece, event.currentTarget.id)){
-                            this.getGameContext(piece);   
+                        var piece = this.board[this.selectedCase];
+                        if(piece && this.move(piece, event.currentTarget.id)){
+                            if (piece.name == 'Pawn'){
+                                if ((this.playercolor == 'white' && this.getCoordenates(piece.position).y == 8) || (this.playercolor == 'black' && this.getCoordenates(piece.position).y == 1)){
+                                    this.promotePawn(piece);
+                                }
+                            }
+                            this.getGameContext();   
                             this.playerTurn = (this.playerTurn == 'white' ? 'black' : 'white');
                             this.syncUp();
                         }    
@@ -149,8 +161,8 @@
                 }
             },
             syncUp(){
-                this.stop = true;
-                axios.post('/api/syncronizeUp', {board: this.board, pieces: this.pieces, playerTurn: this.playerTurn, whiteInCheck: this.whiteInCheck, blackInCheck: this.blackInCheck, token: this.token})
+                
+                axios.post('/api/syncronizeUp', {board: this.board, pieces: this.pieces, playerTurn: this.playerTurn, whiteInCheck: this.whiteInCheck, blackInCheck: this.blackInCheck, gametoken: this.gametoken, checkMate: this.gameCheckMate})
                     .then(response => {
                         this.stop = false;
                     }).catch(function (error) {
@@ -160,7 +172,8 @@
             },
             syncDown(){
                 if (!this.stop){
-                    axios.post('/api/syncronizeDown', {token: this.token})
+                    this.stop = true;
+                    axios.post('/api/syncronizeDown', {gametoken: this.gametoken})
                         .then(response => {
                             var update = response.data;
                             this.board = update.board;
@@ -168,9 +181,12 @@
                             this.playerTurn = update.playerTurn;
                             this.whiteInCheck = update.whiteInCheck;
                             this.blackInCheck = update.blackInCheck;
+                            this.setBoard();
+                            this.getGameContext();
+                            this.stop = false;
                         }).catch(function (error) {
-                            /*console.log(error);
-                            alert("Erro ao sincronizar down");*/
+                            console.log(error);
+                            alert("Erro ao sincronizar down");
                         });
                 }
             },
@@ -560,6 +576,7 @@
             move(piece, target){
                 if (this.playerTurn == piece.color){
                     if (piece && this.canMove(target,piece)){
+                        this.stop = true;
                         this.board[piece.position] = '';
                         piece.position = target;
                         if (this.board[target]){
@@ -573,18 +590,19 @@
                 }
                 return false;
             },
-            getGameContext(piece){
+            getGameContext(){
 
-                const team = (piece.color == 'white' ? this.whitePieces : this.blackPieces);
-                const enemyKing = this.arrayPieces.find(elem => (elem.color != piece.color && elem.name == 'King'));
+                const team = (this.playercolor == 'white' ? this.whitePieces : this.blackPieces);
+                const enemyKing = this.arrayPieces.find(elem => (elem.color != this.playercolor && elem.name == 'King'));
                 for(const elem of team){
                     if (this.isAvailable(this.getCoordenates(enemyKing.position), this.getCoordenates(elem.position),elem)){
-                        piece.color == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
+                        this.playercolor == 'white' ? this.blackInCheck = true : this.whiteInCheck = true;
                         break;
                     }
                 }
-                const enemies = (piece.color == 'white' ? this.blackPieces : this.whitePieces);
-                if (piece.color == 'white' && this.blackInCheck){
+                const enemies = (this.playercolor == 'white' ? this.blackPieces : this.whitePieces);
+                const enemyInCheck = (this.playercolor == 'white' ? this.blackInCheck : this.whiteInCheck);
+                if (enemyInCheck){
                     var canUncheck = false;
                     for (const soldier of enemies){
                         for(const place in this.board){
@@ -595,25 +613,21 @@
                         }
                         if (canUncheck) break;
                     }
-                    if (!canUncheck) this.checkMate('white');
-                }else if(piece.color == 'black' && this.whiteInCheck){
-                    var canUncheck = false;
-                    for (const soldier of enemies){
-                        for(const place in this.board){
-                            if (this.canMove(place, soldier)){
-                                canUncheck = true;
-                                break;
-                            }
-                        }
-                        if (canUncheck) break;
-                    }
-                    if (!canUncheck) this.checkMate('black');
+                    if (!canUncheck) this.checkMate(this.playercolor);
                 }
-
-                if (piece.name == 'Pawn'){
-                    if ((piece.color == 'white' && this.getCoordenates(piece.position).y == 8) || (piece.color == 'black' && this.getCoordenates(piece.position).y == 1)){
-                        this.promotePawn(piece);
+                const selfInCheck = (this.playercolor == 'white' ? this.whiteInCheck : this.blackInCheck);
+                if (selfInCheck){
+                    var canUncheck = false;
+                    for (const soldier of team){
+                        for(const place in this.board){
+                            if (this.canMove(place, soldier)){
+                                canUncheck = true;
+                                break;
+                            }
+                        }
+                        if (canUncheck) break;
                     }
+                    if (!canUncheck) this.checkMate((this.playercolor == 'white' ? 'black' : 'white'));
                 }
             },
             promotePawn(piece){
@@ -635,30 +649,32 @@
                 this.promotedPawn.image = this.selectedPiece.image;
             },
             checkMate(player){
+                this.gameCheckMate = true;
+                clearInterval(this.interval);
                 setTimeout(function(){
                     alert(player+' wins!');
-                }, 100);
+                }, 500);
             }
         },
         computed:{
             whitePieces(){
                 var array_pieces = Object.values(this.pieces);
                 var whites = array_pieces.filter(function(elem){
-                    return elem.color == 'white' && elem.position != '';
+                    return elem.color == 'white' && elem.position != '' && elem.position != null;
                 });
                 return whites;
             },
             blackPieces(){
                 var array_pieces = Object.values(this.pieces);
                 var blacks = array_pieces.filter(function(elem){
-                    return elem.color == 'black' && elem.position != '';
+                    return elem.color == 'black' && elem.position != '' && elem.position != null;
                 });
                 return blacks;
             },
             arrayPieces(){
                 var array_pieces = Object.values(this.pieces);
                 var currentPieces = array_pieces.filter(function(elem){
-                    return elem.position != '';
+                    return elem.position ? true : false;
                 });
                 return currentPieces;    
             }

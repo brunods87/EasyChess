@@ -44,14 +44,14 @@
 	border: 3px solid green;
 }
 .board .row:nth-child(odd) .case:nth-child(odd){
-	background-color: #fff;
+	background-color: #000;
 }
 .board .row:nth-child(even) .case:nth-child(odd){
-	background-color: #000;
+	background-color: #fff;
 }
 .board .row:nth-child(odd) .case:nth-child(even){
-	background-color: #000;
+	background-color: #fff;
 }
 .board .row:nth-child(even) .case:nth-child(even){
-	background-color: #fff;
+	background-color: #000;
 }

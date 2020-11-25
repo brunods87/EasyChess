@@ -71,6 +71,11 @@ class GameInstance extends Model
         }
         $this->board = json_encode($board);
         $this->pieces = json_encode($pieces);
+        $this->player_turn = 'white';
+        $this->white_in_check = false;
+        $this->black_in_check = false;
+        $this->checkMate = false;
+
         $this->save();
     }
 }

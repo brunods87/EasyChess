@@ -4,8 +4,76 @@
 		"selected_items":
 		[
 			[
+				"cleaa",
+				"clearInterval\t( handle?: long ): void Window"
+			],
+			[
+				"enem",
+				"enemyInCheck"
+			],
+			[
+				"game",
+				"gameCheckMate"
+			],
+			[
 				"player",
+				"playercolor"
+			],
+			[
+				"paye",
 				"playerTurn"
+			],
+			[
+				"syn",
+				"syncUp"
+			],
+			[
+				"play",
+				"playerTurn"
+			],
+			[
+				"white",
+				"white_player"
+			],
+			[
+				"instance",
+				"instanceToken"
+			],
+			[
+				"ins",
+				"instanceToken"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"js",
+				"json_encode"
+			],
+			[
+				"GameIn",
+				"GameInstance"
+			],
+			[
+				"b",
+				"blackInCheck"
+			],
+			[
+				"whi",
+				"whiteInCheck"
+			],
+			[
+				"gam",
+				"gameInstance"
+			],
+			[
+				"wh",
+				"whiteInCheck"
+			],
+			[
+				"GameInsta",
+				"gameInstance"
 			],
 			[
 				"sele",
@@ -446,95 +514,11 @@
 			[
 				"paddi",
 				"padding-left"
-			],
-			[
-				"padd",
-				"padding-right"
-			],
-			[
-				"mo",
-				"modal \tBootstrap 4 Class"
-			],
-			[
-				"di",
-				"div\tTag"
-			],
-			[
-				"che",
-				"checkForm"
-			],
-			[
-				"wi",
-				"width"
-			],
-			[
-				"pa",
-				"padding"
-			],
-			[
-				"ht",
-				"htmlpic"
-			],
-			[
-				"col-",
-				"col-md-3 \tBootstrap 3 Class"
-			],
-			[
-				"background",
-				"background-image\tproperty"
-			],
-			[
-				"str_re",
-				"str_replace"
-			],
-			[
-				"min",
-				"min-width\tproperty"
-			],
-			[
-				"col-md",
-				"col-md-2 \tBootstrap 3 Class"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "resources/js/app.js",
-			"settings":
-			{
-				"buffer_size": 1087,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "resources/js/components/BoardWhite.vue",
-			"settings":
-			{
-				"buffer_size": 32088,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/sass/app.scss",
-			"settings":
-			{
-				"buffer_size": 887,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "resources/views/home.blade.php",
-			"settings":
-			{
-				"buffer_size": 89,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -617,16 +601,43 @@
 	"expanded_folders":
 	[
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/Auth",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Models",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Providers",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/config",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database/migrations",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/sass",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views",
-		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/routes"
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views/layouts",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/routes",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/storage",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/storage/logs"
 	],
 	"file_history":
 	[
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Models/GameInstance.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/GameInstanceController.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database/migrations/2020_11_21_142054_create_game_instances_table.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components/Board.vue",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/HomeController.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/sass/app.scss",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views/layouts/app.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views/home.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views/limbo.blade.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/storage/logs/laravel.log",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/.env",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/config/database.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/app.js",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/routes/web.php",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components/BoardWhite.vue",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/Auth/LoginController.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/views/home.blade.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/components/Board.vue",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyChess/resources/js/app.js",
@@ -738,22 +749,7 @@
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Unity.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/update.blade.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Type.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/clients/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Client.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Category.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/types/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/categories/update.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/categories/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/types/update.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/suppliers/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/suppliers/update.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/config/form.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/resources/views/form/vertical.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/vendor/orchestra/html/resources/views/form/horizontal.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/config/database.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/welcome.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/.env"
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Type.php"
 	],
 	"find":
 	{
@@ -771,6 +767,49 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"enemies",
+			"player",
+			"this",
+			"!= ''",
+			"== ''",
+			"getGameContext",
+			"Piece",
+			"getGameContext",
+			"piece.color",
+			"black_in_check",
+			"blackInCheck",
+			"checkMate",
+			"black_in_check",
+			"gameCheckMate",
+			"syncdown",
+			"syncdow",
+			"sincdow",
+			"getGameContext",
+			"getgame",
+			"syncUp",
+			"setBoard",
+			"this.board[",
+			"token",
+			"playerTurn",
+			"whiteInCheck",
+			"]]",
+			"]",
+			"[",
+			"],[",
+			"board",
+			"white",
+			"syncronizeUp",
+			"syncronizeDown",
+			"gsettates",
+			"playerColor",
+			"white",
+			"playerColor",
+			"player",
+			"{name",
+			"''",
+			"white",
+			"pieces",
+			"foreign",
 			"Rook",
 			"promotedPawn",
 			"choosePromotion",
@@ -813,124 +852,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "resources/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1087,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								742,
-								742
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "resources/js/components/BoardWhite.vue",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32088,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8130,
-								8130
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3268.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "resources/sass/app.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 887,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								577,
-								577
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 306.4,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "resources/views/home.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 89,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								75,
-								75
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],

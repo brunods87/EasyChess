@@ -22,6 +22,7 @@ class CreateGameInstancesTable extends Migration
             $table->string('player_turn')->default('white');
             $table->boolean('white_in_check')->default(false);
             $table->boolean('black_in_check')->default(false);
+            $table->boolean('checkMate')->default(false);
             $table->string('instanceToken');
             $table->timestamps();
         });

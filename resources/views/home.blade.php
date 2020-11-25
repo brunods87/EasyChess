@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <board token="{{$token}}" playercolor="{{$playerColor}}"></board>
+    <board gametoken="{{$token}}" playercolor="{{$playerColor}}"></board>
 @endsection
 
 @push('scripts')
