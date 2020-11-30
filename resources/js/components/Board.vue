@@ -347,6 +347,7 @@
                             if (dest.x == 6){
                                 var rook = this.pieces.wr2;
                                 if (rook.hasMoved) return false;
+
                                 for(let i = current.x + 1;i < this.getCoordenates(rook.position).x;i++){
                                     if (this.board[this.getBoardCase({x:i,y:1})]){
                                         return false;

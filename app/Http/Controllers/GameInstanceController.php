@@ -41,7 +41,9 @@ class GameInstanceController extends Controller
         	$pieces = json_decode($gameInstance->pieces);
         	$playerTurn = $gameInstance->player_turn;
         	$whiteInCheck = $gameInstance->white_in_check;
-        	$blackInCheck = $gameInstance->black_in_check;
+        	if ($whiteInCheck == '0') $whiteInCheck = false;
+            $blackInCheck = $gameInstance->black_in_check;
+            if ($blackInCheck == '0') $blackInCheck = false;
         	$response = ['board' => $board, 'pieces' => $pieces, 'playerTurn' => $playerTurn, 'whiteInCheck' => $whiteInCheck, 'blackInCheck' => $blackInCheck];
         	return $response;
         }

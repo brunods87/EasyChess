@@ -532,16 +532,16 @@
 		"selected_items":
 		[
 			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
 				"ins",
 				"Package Control: Install Package"
 			],
 			[
 				"fin",
 				"PHPCompanion:Find Use"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"find",
@@ -610,6 +610,8 @@
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/config",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database/migrations",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/public",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/public/js",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components",
@@ -622,10 +624,13 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Models/GameInstance.php",
-		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/GameInstanceController.php",
-		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database/migrations/2020_11_21_142054_create_game_instances_table.php",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/js/components/Board.vue",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/GameInstanceController.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/public/js/app.js",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/sftp-config.json",
+		"/C/Users/Bruno/Downloads/easychess (1).sql",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Models/GameInstance.php",
+		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/database/migrations/2020_11_21_142054_create_game_instances_table.php",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/app/Http/Controllers/HomeController.php",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/sass/app.scss",
 		"/C/Users/Bruno/Documents/Programacao/Games/EasyChess/resources/views/layouts/app.blade.php",
@@ -746,10 +751,7 @@
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/settings/index.blade.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/materials/update.blade.php",
 		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/employees/update.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Unity.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/update.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/resources/views/unities/create.blade.php",
-		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Type.php"
+		"/C/Users/Bruno/Documents/Programacao/Applications/EasyStock/app/Unity.php"
 	],
 	"find":
 	{
@@ -767,6 +769,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"white_in_check",
+			"varchar(255",
+			"bigint(20)",
 			"enemies",
 			"player",
 			"this",
@@ -888,9 +893,17 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SFTP":
+	{
+		"height": 139.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 139.0
 	},
 	"pinned_build_system": "",
 	"project": "easychess.sublime-project",
