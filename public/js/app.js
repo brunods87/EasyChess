@@ -3051,6 +3051,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       setTimeout(function () {
         alert(player + ' wins!');
       }, 500);
+    },
+    kingCheck: function kingCheck(pos) {
+      if (this.board[pos]) {
+        if (this.board[pos].name == 'King') {
+          if (this.board[pos].color == 'white') {
+            return this.whiteInCheck;
+          }
+
+          if (this.board[pos].color == 'black') {
+            return this.blackInCheck;
+          }
+        }
+      }
+
+      return false;
     }
   },
   computed: {
@@ -38701,7 +38716,10 @@ var render = function() {
                     "div",
                     {
                       staticClass: "case",
-                      class: { selected: _vm.selectedCase == col + row },
+                      class: {
+                        selected: _vm.selectedCase == col + row,
+                        inCheck: _vm.kingCheck(col + row)
+                      },
                       attrs: { id: col + row },
                       on: { click: _vm.selectCase }
                     },

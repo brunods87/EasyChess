@@ -8,8 +8,8 @@
 @import '~bootstrap/scss/bootstrap';
 
 .board{
-	width: 650px;
-	height: 650px;
+	width: 350px;
+	height: 350px;
 	margin: 0 auto;
 	position: relative;
 }
@@ -40,8 +40,14 @@
 	justify-content: center;
 	align-items: center;
 }
+.case img{
+	max-width: 100%;
+}
 .case.selected, .promo.selected{
 	border: 3px solid green;
+}
+.inCheck{
+	border: 3px solid red;
 }
 .board .row:nth-child(odd) .case:nth-child(odd){
 	background-color: #000;
@@ -54,4 +60,12 @@
 }
 .board .row:nth-child(even) .case:nth-child(even){
 	background-color: #000;
+}
+
+@include media-breakpoint-up(md) {
+  
+  .board{
+		width: 650px;
+		height: 650px;
+	}
 }

@@ -11,7 +11,7 @@
                         </div>
                     </div>
                     <div class="row" v-for="row in rows">
-                        <div class="case" v-on:click="selectCase" :id="col+row" v-for="col in columns" v-bind:class="{ selected: selectedCase == col+row }">
+                        <div class="case" v-on:click="selectCase" :id="col+row" v-for="col in columns" v-bind:class="{ selected: selectedCase == col+row, inCheck: kingCheck(col+row) }">
                             <img :src="'/img/'+board[col+row].image" v-if="board[col+row]">
                         </div>
                     </div>
@@ -655,6 +655,19 @@
                 setTimeout(function(){
                     alert(player+' wins!');
                 }, 500);
+            },
+            kingCheck(pos){
+                if (this.board[pos]){
+                    if (this.board[pos].name == 'King'){
+                        if (this.board[pos].color == 'white'){
+                            return this.whiteInCheck;
+                        }
+                        if (this.board[pos].color == 'black'){
+                            return this.blackInCheck;
+                        }
+                    }
+                }
+                return false;
             }
         },
         computed:{
@@ -678,7 +691,8 @@
                     return elem.position ? true : false;
                 });
                 return currentPieces;    
-            }
+            },
+            
         }
     }
 </script>
